@@ -1,20 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_concat_str.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: galves-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/01 05:04:06 by galves-d          #+#    #+#             */
-/*   Updated: 2020/02/09 22:45:55 by galves-d         ###   ########.fr       */
+/*   Created: 2020/02/09 22:40:59 by galves-d          #+#    #+#             */
+/*   Updated: 2020/02/09 22:59:04 by galves-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "ft_printf.h"
 
-int main()
+int		ft_concat_str(char **s1, char *s2, size_t *s1_len)
 {
-	printf("%s", "Uma string \0para testar");
-	return (0);
+	int		i;
+
+	i = 0;
+	while (s2[i] != '\0')
+	{
+		if (!ft_concat_char(s1, s2[i], *s1_len))
+			return (0);
+		(*s1_len)++;
+		i++;
+	}
+	return (42);
 }

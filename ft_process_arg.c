@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_process_arg.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: galves-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/01 05:04:06 by galves-d          #+#    #+#             */
-/*   Updated: 2020/02/09 22:45:55 by galves-d         ###   ########.fr       */
+/*   Created: 2020/02/09 22:21:52 by galves-d          #+#    #+#             */
+/*   Updated: 2020/02/09 22:59:09 by galves-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "ft_printf.h"
 
-int main()
+int		ft_process_arg(t_format *fmt)
 {
-	printf("%s", "Uma string \0para testar");
-	return (0);
+	if (!ft_strncmp(fmt->id->type, "c", 1))
+	return (42);
 }

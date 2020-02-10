@@ -6,7 +6,7 @@
 #    By: galves-d <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/04 02:08:26 by galves-d          #+#    #+#              #
-#    Updated: 2020/02/09 21:30:07 by galves-d         ###   ########.fr        #
+#    Updated: 2020/02/09 22:57:33 by galves-d         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,8 @@ SRCS		=	$(SRCS_DIR)/ft_printf.c				\
 				$(SRCS_DIR)/ft_new_fmt.c			\
 				$(SRCS_DIR)/ft_del_fmt.c			\
 				$(SRCS_DIR)/ft_build_output.c		\
-				$(SRCS_DIR)/ft_realloc_strchar.c	\
+				$(SRCS_DIR)/ft_concat_char.c		\
+				$(SRCS_DIR)/ft_concat_str.c			\
 				$(SRCS_DIR)/ft_new_id.c				\
 				$(SRCS_DIR)/ft_del_id.c				\
 				$(SRCS_DIR)/ft_is_present.c			\
@@ -33,7 +34,8 @@ SRCS		=	$(SRCS_DIR)/ft_printf.c				\
 				$(SRCS_DIR)/ft_get_width.c			\
 				$(SRCS_DIR)/ft_get_precision.c		\
 				$(SRCS_DIR)/ft_get_type.c			\
-				$(SRCS_DIR)/ft_filter_id.c
+				$(SRCS_DIR)/ft_filter_id.c			\
+				$(SRCS_DIR)/ft_process_arg.c
 
 OBJS_DIR	=	.
 OBJS		=	$(patsubst $(SRCS_DIR)/%.c, $(OBJS_DIR)/%.o, $(SRCS))

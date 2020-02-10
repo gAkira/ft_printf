@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_realloc_strchar.c                               :+:      :+:    :+:   */
+/*   ft_concat_char.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: galves-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/01 05:56:22 by galves-d          #+#    #+#             */
-/*   Updated: 2020/02/04 02:01:57 by galves-d         ###   ########.fr       */
+/*   Updated: 2020/02/09 22:20:49 by galves-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_realloc_strchar(char **str, char c)
+int		ft_concat_char(char **str, char c, size_t str_len)
 {
 	char	*aux;
 	char	*new_str;
-	int		str_len;
 
 	aux = *str;
-	str_len = ft_strlen(aux);
 	new_str = (char*)ft_calloc(str_len + 2, sizeof(char));
 	if (new_str == NULL)
 		return (0);
-	ft_strlcpy(new_str, aux, str_len + 1);
+	ft_memmove(new_str, aux, str_len);
 	new_str[str_len] = c;
 	*str = new_str;
 	free(aux);
