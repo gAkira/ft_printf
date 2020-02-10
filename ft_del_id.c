@@ -1,20 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_del_id.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: galves-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/01 05:04:06 by galves-d          #+#    #+#             */
-/*   Updated: 2020/02/09 19:17:48 by galves-d         ###   ########.fr       */
+/*   Created: 2020/02/07 03:22:22 by galves-d          #+#    #+#             */
+/*   Updated: 2020/02/07 03:41:07 by galves-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "ft_printf.h"
 
-int main()
+void	ft_del_id(t_id *id)
 {
-	printf("%.5s", "Uma string para testar");
-	return (0);
+	if (id != NULL)
+	{
+		if (id->width != NULL)
+			free(id->width);
+		if (id->precision != NULL)
+			free(id->precision);
+		if (id->type != NULL)
+			free(id->type);
+		free(id);
+	}
 }

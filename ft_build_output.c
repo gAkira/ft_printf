@@ -6,7 +6,7 @@
 /*   By: galves-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/01 05:23:17 by galves-d          #+#    #+#             */
-/*   Updated: 2020/02/01 09:33:54 by galves-d         ###   ########.fr       */
+/*   Updated: 2020/02/09 21:42:03 by galves-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,18 @@ int		ft_build_output(t_format *fmt, int *it)
 	{
 		if (fmt->input[*it] != '%')
 		{
-			if (!ft_putchar_output(fmt, fmt->input[*it]))
+			if (!ft_realloc_strchar(&(fmt->output), fmt->input[*it], fmt->out_len))
 				return (0);
-			else
-				(*it)++;
+			(*it)++;
+			(fmt->out_len)++;
 		}
 		else
 		{
 			fmt->id = ft_new_id(&(fmt->input[*it]));
-			if (fmt->id == NULL)
+			if (fmt->id == NULL || !ft_filter_id(fmt))
 				return (0);
-			ft_process_arg(fmt);
-			*it += fmt->id->length;
+			/*ft_process_arg(fmt);
+			*it += fmt->id->length;*/
 		}
 		return (ft_build_output(fmt, it));
 	}

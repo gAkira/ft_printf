@@ -1,20 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_get_width.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: galves-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/01 05:04:06 by galves-d          #+#    #+#             */
-/*   Updated: 2020/02/09 19:17:48 by galves-d         ###   ########.fr       */
+/*   Created: 2020/02/04 16:54:01 by galves-d          #+#    #+#             */
+/*   Updated: 2020/02/07 03:13:02 by galves-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "ft_printf.h"
 
-int main()
+int		ft_get_width(const char *str, t_id *id, int *pos)
 {
-	printf("%.5s", "Uma string para testar");
-	return (0);
+	int		i;
+
+	i = 0;
+	while (str[i] == '*' || ft_isdigit((int)str[i]))
+		i++;
+	if (i > 0)
+		id->width = ft_substr(str, 0, i);
+	*pos += i;
+	return (i);
 }

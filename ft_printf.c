@@ -6,7 +6,7 @@
 /*   By: galves-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/01 01:56:46 by galves-d          #+#    #+#             */
-/*   Updated: 2020/02/01 09:34:20 by galves-d         ###   ########.fr       */
+/*   Updated: 2020/02/09 16:24:21 by galves-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,14 @@ int		ft_printf(const char *format, ...)
 
 	itr = 0;
 	va_start(args, format);
-	fmt = ft_new_fmt(format, args);
+	fmt = ft_new_fmt(format, &args);
 	if (fmt != NULL && ft_build_output(fmt, &itr))
 	{
-		ft_putstr_fd(fmt->output, FD_OUTPUT);
+		write(FD_OUTPUT, fmt->output, fmt->out_len);
 		length = ft_strlen(fmt->output);
 		ft_del_fmt(fmt);
 		return (length);
 	}
+	ft_del_fmt(fmt);
 	return (-42);
 }

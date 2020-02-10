@@ -1,20 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_get_flag.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: galves-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/01 05:04:06 by galves-d          #+#    #+#             */
-/*   Updated: 2020/02/09 19:17:48 by galves-d         ###   ########.fr       */
+/*   Created: 2020/02/04 12:41:52 by galves-d          #+#    #+#             */
+/*   Updated: 2020/02/04 18:55:06 by galves-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "ft_printf.h"
 
-int main()
+int		ft_get_flag(const char *str, t_id *id, int *pos)
 {
-	printf("%.5s", "Uma string para testar");
-	return (0);
+	int		f_cnt;
+
+	f_cnt = 0;
+	while (ft_is_present(str[f_cnt], ID_FLAGS))
+	{
+		if (str[f_cnt] == '-')
+			id->flags |= FLG_MINUS;
+		else if (str[f_cnt] == '0')
+			id->flags |= FLG_ZERO;
+		f_cnt++;
+	}
+	*pos += f_cnt;
+	return (f_cnt);
 }

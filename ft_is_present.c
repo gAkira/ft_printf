@@ -1,20 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_is_present.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: galves-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/01 05:04:06 by galves-d          #+#    #+#             */
-/*   Updated: 2020/02/09 19:17:48 by galves-d         ###   ########.fr       */
+/*   Created: 2020/02/04 12:50:42 by galves-d          #+#    #+#             */
+/*   Updated: 2020/02/04 12:53:13 by galves-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "ft_printf.h"
 
-int main()
+int		ft_is_present(char c, const char *set)
 {
-	printf("%.5s", "Uma string para testar");
+	int		i;
+
+	i = 0;
+	while (c == '\0' || set[i] != '\0')
+	{
+		if (set[i] == c)
+			return (42);
+		i++;
+	}
 	return (0);
 }

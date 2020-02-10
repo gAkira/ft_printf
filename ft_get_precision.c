@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_output.c                                :+:      :+:    :+:   */
+/*   ft_get_precision.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: galves-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/01 05:56:22 by galves-d          #+#    #+#             */
-/*   Updated: 2020/02/01 06:03:28 by galves-d         ###   ########.fr       */
+/*   Created: 2020/02/04 17:29:19 by galves-d          #+#    #+#             */
+/*   Updated: 2020/02/07 03:12:00 by galves-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_putchar_output(t_format *fmt, char c)
+int		ft_get_precision(const char *str, t_id *id, int *pos)
 {
-	char	*new_out;
-	char	*str;
+	int		i;
 
-	str = (char*)ft_calloc(2, sizeof(char));
-	if (str == NULL)
+	if (str[0] != '.')
 		return (0);
-	str[0] = c;
-	return (ft_putstr_output(fmt, str));
+	i = 1;
+	while (str[i] != '\0' && ft_isdigit((int)str[i]))
+		i++;
+	if (i > 1)
+		id->precision = ft_substr(str, 1, i - 1);
+	*pos += i;
+	return (i);
 }

@@ -6,7 +6,7 @@
 /*   By: galves-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 12:05:54 by galves-d          #+#    #+#             */
-/*   Updated: 2020/02/01 09:26:39 by galves-d         ###   ########.fr       */
+/*   Updated: 2020/02/04 02:07:45 by galves-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,11 @@ static char	*lst_to_str(t_list *lst)
 		lst = lst->next;
 		i++;
 	}
+	ft_lstclear(&lst, &free);
 	return (str);
 }
 
-char		*ft_itoa_base(int nbr, const char *base)
+char		*ft_itoa_base(int nbr, const char *base, const char plus)
 {
 	int				sinal;
 	unsigned int	u_nbr;
@@ -44,10 +45,10 @@ char		*ft_itoa_base(int nbr, const char *base)
 	sinal = (nbr < 0 ? -1 : 1);
 	u_nbr = (nbr < 0 ? -nbr : nbr);
 	if (u_nbr == 0)
-		return (lst_to_str(ft_substr(&base[0], 0, 1)));
+		return (ft_substr(base, 0, 1));
 	while (u_nbr > 0)
 	{
-		aux = ft_lstnew(ft_substr(&base[u_nbr % ft_strlen(base)], 0, 1));
+		aux = ft_lstnew(ft_substr(base, u_nbr % ft_strlen(base), 1));
 		if (aux == NULL)
 			return (NULL);
 		ft_lstadd_front(&num, aux);
@@ -55,5 +56,7 @@ char		*ft_itoa_base(int nbr, const char *base)
 	}
 	if (sinal < 0)
 		ft_lstadd_front(&num, ft_lstnew("-"));
+	else if (plus == '+')
+		ft_lstadd_front(&num, ft_lstnew("+"));
 	return (lst_to_str(num));
 }
