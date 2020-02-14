@@ -6,7 +6,7 @@
 /*   By: galves-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/01 01:53:12 by galves-d          #+#    #+#             */
-/*   Updated: 2020/02/09 22:59:20 by galves-d         ###   ########.fr       */
+/*   Updated: 2020/02/14 15:53:17 by galves-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ t_format				*ft_new_fmt(const char *fmt, va_list *arg);
 void					ft_del_fmt(t_format *fmt);
 int						ft_build_output(t_format *fmt, int *it);
 int						ft_concat_char(char **str, char c, size_t str_len);
-int						ft_concat_str(char **s1, char *s2, size_t s1_len);
+int						ft_concat_str(char **s1, char *s2, size_t *s1_len,
+											size_t s2_len);
 t_id					*ft_new_id(const char *str);
 void					ft_del_id(t_id *id);
 int						ft_is_present(char c, const char *set);
@@ -71,5 +72,7 @@ int						ft_filter_id(t_format *fmt);
 int						ft_process_arg(t_format *fmt);
 
 char					*ft_itoa_base(int nbr, const char *base);
+char					*ft_itoa_base_s(int nbr, const char *base,
+											int is_signed);
 
 #endif

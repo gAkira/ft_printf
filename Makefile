@@ -6,7 +6,7 @@
 #    By: galves-d <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/04 02:08:26 by galves-d          #+#    #+#              #
-#    Updated: 2020/02/09 22:57:33 by galves-d         ###   ########.fr        #
+#    Updated: 2020/02/14 14:19:21 by galves-d         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,8 +17,8 @@ C_FLAGS		=	-Wall -Wextra -Werror
 
 INC			=	.
 
-LIB_DIR		=	./libft/
-LIB			=	ft
+LIB_DIR		=	./libft
+LIB			=	$(LIB_DIR)/libft.a
 
 SRCS_DIR	=	.
 SRCS		=	$(SRCS_DIR)/ft_printf.c				\
@@ -42,29 +42,31 @@ OBJS		=	$(patsubst $(SRCS_DIR)/%.c, $(OBJS_DIR)/%.o, $(SRCS))
 
 all:	$(NAME)
 
-$(NAME):	$(OBJS)
-	ar rcs $@ $^
+$(NAME):	$(OBJS)	$(LIB)
+	cp $(LIB) $(OBJS_DIR)
+	mv $(subst $(LIB_DIR), $(OBJS_DIR), $(LIB)) $(NAME)
+	ar rcs $@ $(OBJS)
 	ranlib $@
 
-$(OBJS_DIR)/%.o:	$(SRCS_DIR)/%.c $(LIB_DIR)/lib$(LIB).a
-	$(CC) $(C_FLAGS) -I$(INC) -c $< -o $@
+$(OBJS_DIR)/%.o:	$(SRCS_DIR)/%.c
+	$(CC) $(C_FLAGS) -I$(INC) -I$(LIB_DIR) -c $< -o $@
 
-$(LIB_DIR)/lib$(LIB).a:
+$(LIB):
 	$(MAKE) -C $(LIB_DIR) all
 	$(MAKE) -C $(LIB_DIR) bonus
 
 clean:
-	$(RM) $(OBJS)
 	$(MAKE) -C $(LIB_DIR) clean
+	$(RM) $(OBJS)
 	
 fclean: clean
-	$(RM) $(NAME)
 	$(MAKE) -C $(LIB_DIR) fclean
+	$(RM) $(NAME) $(LIB)
 
 re: fclean all
 
 teste: $(NAME) $(LIB_DIR)/lib$(LIB).a
-	$(CC) main.c -o output -L. -lftprintf -L$(LIB_DIR) -l$(LIB)
+	$(CC) main.c -o output -L. -lftprintf -L$(LIB_DIR) -lft
 
 
 .PHONY: all clean fclean re

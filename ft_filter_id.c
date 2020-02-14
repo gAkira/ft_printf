@@ -6,7 +6,7 @@
 /*   By: galves-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 18:51:41 by galves-d          #+#    #+#             */
-/*   Updated: 2020/02/09 21:22:40 by galves-d         ###   ########.fr       */
+/*   Updated: 2020/02/14 15:52:53 by galves-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	filter_width(t_format *fmt)
 	char	*num;
 
 	i = 0;
-	while (fmt->id->width[i] != '\0')
+	while (fmt->id->width && fmt->id->width[i] != '\0')
 	{
 		if (fmt->id->width[i] == '*')
 		{
@@ -47,7 +47,7 @@ static int	filter_precision(t_format *fmt)
 	char	*num;
 
 	i = 1;
-	while (fmt->id->precision[i] != '\0')
+	while (fmt->id->precision && fmt->id->precision[i] != '\0')
 	{
 		if (fmt->id->precision[i] == '*')
 		{
