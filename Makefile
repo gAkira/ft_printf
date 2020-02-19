@@ -6,7 +6,7 @@
 #    By: galves-d <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/04 02:08:26 by galves-d          #+#    #+#              #
-#    Updated: 2020/02/14 14:19:21 by galves-d         ###   ########.fr        #
+#    Updated: 2020/02/19 18:17:46 by galves-d         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ LIB			=	$(LIB_DIR)/libft.a
 
 SRCS_DIR	=	.
 SRCS		=	$(SRCS_DIR)/ft_printf.c				\
+				$(SRCS_DIR)/ft_free.c				\
 				$(SRCS_DIR)/ft_new_fmt.c			\
 				$(SRCS_DIR)/ft_del_fmt.c			\
 				$(SRCS_DIR)/ft_build_output.c		\
@@ -30,12 +31,14 @@ SRCS		=	$(SRCS_DIR)/ft_printf.c				\
 				$(SRCS_DIR)/ft_new_id.c				\
 				$(SRCS_DIR)/ft_del_id.c				\
 				$(SRCS_DIR)/ft_is_present.c			\
+				$(SRCS_DIR)/ft_has_flag.c			\
 				$(SRCS_DIR)/ft_get_flag.c			\
 				$(SRCS_DIR)/ft_get_width.c			\
 				$(SRCS_DIR)/ft_get_precision.c		\
 				$(SRCS_DIR)/ft_get_type.c			\
 				$(SRCS_DIR)/ft_filter_id.c			\
-				$(SRCS_DIR)/ft_process_arg.c
+				$(SRCS_DIR)/ft_process_arg.c		\
+				$(SRCS_DIR)/ft_process_c.c
 
 OBJS_DIR	=	.
 OBJS		=	$(patsubst $(SRCS_DIR)/%.c, $(OBJS_DIR)/%.o, $(SRCS))
@@ -65,8 +68,13 @@ fclean: clean
 
 re: fclean all
 
-teste: $(NAME) $(LIB_DIR)/lib$(LIB).a
-	$(CC) main.c -o output -L. -lftprintf -L$(LIB_DIR) -lft
+t:	all
+	$(CC) $(C_FLAGS) -I. libftprintf.a -I. teste.c -o output
+	./output
+
+d:
+	@$(CC) main.c -o output
+	@./output
 
 
 .PHONY: all clean fclean re

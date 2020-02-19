@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_has_flag.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: galves-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/01 05:04:06 by galves-d          #+#    #+#             */
-/*   Updated: 2020/02/19 17:49:59 by galves-d         ###   ########.fr       */
+/*   Created: 2020/02/19 17:36:58 by galves-d          #+#    #+#             */
+/*   Updated: 2020/02/19 18:30:00 by galves-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "ft_printf.h"
 
-int main()
+int		ft_has_flag(t_id *id, t_flag flag)
 {
-	int		width = 5;
-	int		precs = 8;
-	char	letra = 'd';
-
-	printf("%-5c", letra);
-	return (0);
+	return ((int)(id->flags & flag));
 }

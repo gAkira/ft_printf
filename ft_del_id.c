@@ -6,7 +6,7 @@
 /*   By: galves-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 03:22:22 by galves-d          #+#    #+#             */
-/*   Updated: 2020/02/19 16:09:19 by galves-d         ###   ########.fr       */
+/*   Updated: 2020/02/19 18:14:35 by galves-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ void	ft_del_id(t_id **id)
 	if (id != NULL && *id != NULL)
 	{
 		if ((*id)->width != NULL)
-			ft_free(&((*id)->width));
+			ft_free((void**)&((*id)->width));
 		if ((*id)->precision != NULL)
-			ft_free(&((*id)->precision));
+			ft_free((void**)&((*id)->precision));
 		if ((*id)->type != NULL)
-			ft_free(&((*id)->type));
-		ft_free(id);
+			ft_free((void**)&((*id)->type));
+		ft_free((void**)id);
 	}
 }

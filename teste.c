@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   teste.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: galves-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/01 05:04:06 by galves-d          #+#    #+#             */
-/*   Updated: 2020/02/19 17:49:59 by galves-d         ###   ########.fr       */
+/*   Created: 2020/02/19 18:04:54 by galves-d          #+#    #+#             */
+/*   Updated: 2020/02/19 18:41:14 by galves-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "ft_printf.h"
+#include <stdio.h>
 
-int main()
+int		main(void)
 {
-	int		width = 5;
-	int		precs = 8;
-	char	letra = 'd';
+	char	*fmt	=	"Esse eh o char %-3.5c yeah \t";
+	char	c		=	'j';
 
-	printf("%-5c", letra);
-	return (0);
+	printf("%d\n", ft_printf(fmt, c));
+	printf("%d\n", printf(fmt, c));
 }

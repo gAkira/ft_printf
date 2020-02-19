@@ -6,18 +6,18 @@
 /*   By: galves-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 22:40:59 by galves-d          #+#    #+#             */
-/*   Updated: 2020/02/09 22:59:04 by galves-d         ###   ########.fr       */
+/*   Updated: 2020/02/19 18:11:38 by galves-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_concat_str(char **s1, char *s2, size_t *s1_len)
+int		ft_concat_str(char **s1, char *s2, size_t *s1_len, size_t s2_len)
 {
-	int		i;
+	size_t		i;
 
 	i = 0;
-	while (s2[i] != '\0')
+	while (i < s2_len)
 	{
 		if (!ft_concat_char(s1, s2[i], *s1_len))
 			return (0);
