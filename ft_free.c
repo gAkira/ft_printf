@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_new_fmt.c                                       :+:      :+:    :+:   */
+/*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: galves-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/01 02:39:22 by galves-d          #+#    #+#             */
-/*   Updated: 2020/02/19 16:22:56 by galves-d         ###   ########.fr       */
+/*   Created: 2020/02/19 15:59:32 by galves-d          #+#    #+#             */
+/*   Updated: 2020/02/19 16:06:27 by galves-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-t_format	*ft_new_fmt(const char *fmt, va_list *arg)
+void	ft_free(void **ptr)
 {
-	t_format	*new_fmt;
-
-	if (fmt == NULL || arg == NULL)
-		return (NULL);
-	new_fmt = (t_format*)ft_calloc(1, sizeof(t_format));
-	if (new_fmt != NULL)
+	if (ptr != NULL && *ptr != NULL)
 	{
-		new_fmt->input = fmt;
-		new_fmt->args = arg;
+		free(*ptr);
+		*ptr = NULL;
 	}
-	return (new_fmt);
 }
