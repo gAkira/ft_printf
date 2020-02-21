@@ -6,7 +6,7 @@
 /*   By: galves-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 18:51:41 by galves-d          #+#    #+#             */
-/*   Updated: 2020/02/14 15:52:53 by galves-d         ###   ########.fr       */
+/*   Updated: 2020/02/21 16:25:41 by galves-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static int	filter_precision(t_format *fmt)
 	int		start;
 	char	*num;
 
-	i = 1;
+	i = 0;
 	while (fmt->id->precision && fmt->id->precision[i] != '\0')
 	{
 		if (fmt->id->precision[i] == '*')
@@ -62,7 +62,7 @@ static int	filter_precision(t_format *fmt)
 			if (!(num = ft_substr(fmt->id->precision, start, i - start)))
 				return (0);
 			fmt->id->f_precision = (size_t)ft_atoi(num);
-			free(num);
+			ft_free((void**)&num);
 		}
 	}
 	return (42);
