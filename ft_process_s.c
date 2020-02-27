@@ -6,16 +6,20 @@
 /*   By: galves-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 15:49:35 by galves-d          #+#    #+#             */
-/*   Updated: 2020/02/21 16:51:24 by galves-d         ###   ########.fr       */
+/*   Updated: 2020/02/27 11:58:04 by galves-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	put_null(t_format *fmt)
+static char	*get_arg(t_format *fmt)
 {
-	write(1, "XXXXX", 5);
-	return (ft_concat_str(&(fmt->output), "(null)", &(fmt->out_len), 6));
+	char	*arg;
+
+	arg = va_arg(*(fmt->args), char*);
+	if (arg == NULL)
+		return (ft_strdup("(null)"));
+	return (ft_strdup(arg));
 }
 
 int			ft_process_s(t_format *fmt)
@@ -25,9 +29,7 @@ int			ft_process_s(t_format *fmt)
 	char	*new_o;
 	char	*arg;
 
-	arg = ft_strdup(va_arg(*(fmt->args), char*));
-	if (arg == NULL)
-		return (put_null(fmt));
+	arg = get_arg(fmt);
 	a_len = ft_strlen(arg);
 	o_len = a_len;
 	if (fmt->id->precision)
@@ -41,6 +43,8 @@ int			ft_process_s(t_format *fmt)
 		ft_memcpy(new_o, arg, a_len);
 	else
 		ft_memcpy(&new_o[o_len - a_len], arg, a_len);
+	if (ft_has_flag(fmt->id, FLG_ZERO) && !ft_has_flag(fmt->id, FLG_MINUS))
+		ft_memset(new_o, '0', o_len - a_len);
 	if (!ft_concat_str(&(fmt->output), new_o, &(fmt->out_len), o_len))
 		return (0);
 	return (42);
