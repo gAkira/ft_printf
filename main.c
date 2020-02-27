@@ -6,7 +6,7 @@
 /*   By: galves-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/01 05:04:06 by galves-d          #+#    #+#             */
-/*   Updated: 2020/02/19 17:49:59 by galves-d         ###   ########.fr       */
+/*   Updated: 2020/02/27 11:08:35 by galves-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 
 int main()
 {
-	int		width = 5;
-	int		precs = 8;
-	char	letra = 'd';
+	//int		width = 5;
+	//int		precs = 8;
+	//char	letra = 'd';
 
-	printf("%-5c", letra);
+	printf("%0-3.5%");
 	return (0);
 }
