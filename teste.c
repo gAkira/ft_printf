@@ -6,7 +6,7 @@
 /*   By: galves-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 18:04:54 by galves-d          #+#    #+#             */
-/*   Updated: 2020/02/27 10:48:38 by galves-d         ###   ########.fr       */
+/*   Updated: 2020/02/28 19:55:06 by galves-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 
 int		main(void)
 {
-	char	*fmt	=	"Esse eh % % a string %s yeah\t";
-	char	*arg	=	"lalala";
+	char	*fmt	=	"Esse eh % % o inteiro %9.2p yeah\t";
+	//char	*arg	=	"lalala";
+	int		arg		=	55;
 
 	printf("%d\n", ft_printf(fmt, arg));
 	printf("%d\n", printf(fmt,arg));

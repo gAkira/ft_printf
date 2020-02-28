@@ -1,0 +1,97 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_process_u.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: galves-d <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/19 15:49:35 by galves-d          #+#    #+#             */
+/*   Updated: 2020/02/28 18:24:17 by galves-d         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "ft_printf.h"
+
+static char		*build_precision(t_format *fmt, char *c_arg, int ind)
+{
+	char	*n_arg;
+
+	if (!(n_arg = (char*)ft_calloc(fmt->id->f_precision + 1 + ind,
+					sizeof(char))))
+		return (NULL);
+	n_arg[0] = (c_arg[0] == '-' || c_arg[0] == '+') ? c_arg[0] : '0';
+	ft_memset(&n_arg[ind], '0', fmt->id->f_precision - ft_strlen(c_arg) + ind);
+	ft_memcpy(&n_arg[fmt->id->f_precision - ft_strlen(c_arg) + 2 * ind],
+					&c_arg[ind], ft_strlen(c_arg));
+	ft_free((void**)&c_arg);
+	return (n_arg);
+}
+
+static char		*get_arg(t_format *fmt)
+{
+	unsigned int	arg;
+	int				ind;
+	char			*c_arg;
+
+	arg = va_arg(*(fmt->args), unsigned int);
+	if (fmt->id->precision && fmt->id->f_precision == 0 && arg == 0) 
+		return (ft_strdup(""));
+	c_arg = ft_itoa_base_u(arg, BS_DEC, 0);
+	ind = (ft_has_flag(fmt->id, FLG_PLUS) || arg < 0 ? 1 : 0);
+	if (fmt->id->precision && (fmt->id->f_precision > (ft_strlen(c_arg) - ind)))
+		return (build_precision(fmt, c_arg, ind));
+	return (c_arg);
+}
+
+static size_t	get_output_length(t_format *fmt, size_t a_len)
+{
+	size_t	o_len;
+
+	o_len = a_len;
+	if (fmt->id->width)
+		o_len = fmt->id->f_width > o_len ? fmt->id->f_width : a_len;
+	return (o_len);
+}
+
+static void		fill_zeroes(char *str)
+{
+	int		i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] == ' ')
+			str[i] = '0';
+		if (i && (str[i] == '+' || str[i] == '-'))
+		{
+			str[0] = str[i];
+			str[i] = '0';
+		}
+		i++;
+	}
+}
+
+int				ft_process_u(t_format *fmt)
+{
+	size_t	o_len;
+	size_t	a_len;
+	char	*new_o;
+	char	*arg;
+
+	arg = get_arg(fmt);
+	a_len = ft_strlen(arg);
+	o_len = get_output_length(fmt, a_len);
+	if (!(new_o = (char*)ft_calloc(o_len + 1, sizeof(char))))
+		return (0);
+	ft_memset(new_o, ' ', o_len);
+	if (ft_has_flag(fmt->id, FLG_MINUS))
+		ft_memcpy(new_o, arg, ft_strlen(arg));
+	else
+		ft_memcpy(&new_o[o_len - a_len], arg, a_len);
+	if (ft_has_flag(fmt->id, FLG_ZERO) && !fmt->id->precision)
+		fill_zeroes(new_o);
+	ft_free((void**)&arg);
+	if (!ft_concat_str(&(fmt->output), new_o, &(fmt->out_len), o_len))
+		return (0);
+	return (42);
+}

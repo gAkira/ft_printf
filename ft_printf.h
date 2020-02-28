@@ -6,7 +6,7 @@
 /*   By: galves-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/01 01:53:12 by galves-d          #+#    #+#             */
-/*   Updated: 2020/02/27 10:47:43 by galves-d         ###   ########.fr       */
+/*   Updated: 2020/02/28 20:01:27 by galves-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,18 @@ int						ft_filter_id(t_format *fmt);
 int						ft_process_arg(t_format *fmt);
 int						ft_process_c(t_format *fmt);
 int						ft_process_s(t_format *fmt);
+int						ft_process_p(t_format *fmt);
+int						ft_process_d(t_format *fmt);
+int						ft_process_i(t_format *fmt);
+int						ft_process_u(t_format *fmt);
+int						ft_process_x(t_format *fmt);
+int						ft_process_xu(t_format *fmt);
 int						ft_process_pc(t_format *fmt);
 
 char					*ft_itoa_base(int nbr, const char *base);
 char					*ft_itoa_base_s(int nbr, const char *base,
+											int is_signed);
+char					*ft_itoa_base_u(unsigned long int nbr, const char *base,
 											int is_signed);
 
 #endif

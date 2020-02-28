@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa_base.c                                     :+:      :+:    :+:   */
+/*   ft_itoa_base_u.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: galves-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 12:05:54 by galves-d          #+#    #+#             */
-/*   Updated: 2020/02/27 12:54:17 by galves-d         ###   ########.fr       */
+/*   Updated: 2020/02/28 18:38:01 by galves-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ static char	*lst_to_str(t_list *lst)
 	return (str);
 }
 
-char		*ft_itoa_base(int nbr, const char *base)
+char		*ft_itoa_base_u(unsigned long int nbr, const char *base,
+		int is_signed)
 {
 	int				sign;
 	unsigned int	u_nbr;
@@ -55,7 +56,7 @@ char		*ft_itoa_base(int nbr, const char *base)
 		ft_lstadd_front(&num, aux);
 		u_nbr /= ft_strlen(base);
 	}
-	if (sign < 0)
+	if (sign < 0 && is_signed)
 		ft_lstadd_front(&num, ft_lstnew("-"));
 	return (lst_to_str(num));
 }

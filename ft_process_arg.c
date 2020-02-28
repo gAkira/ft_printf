@@ -6,7 +6,7 @@
 /*   By: galves-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 22:21:52 by galves-d          #+#    #+#             */
-/*   Updated: 2020/02/27 11:23:14 by galves-d         ###   ########.fr       */
+/*   Updated: 2020/02/28 18:32:52 by galves-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int		ft_process_arg(t_format *fmt)
 		return (ft_process_c(fmt));
 	else if (!ft_strncmp(fmt->id->type, "s", 1))
 		return (ft_process_s(fmt));
-	/*
 	else if (!ft_strncmp(fmt->id->type, "p", 1))
 		return (ft_process_p(fmt));
 	else if (!ft_strncmp(fmt->id->type, "d", 1))
@@ -30,9 +29,8 @@ int		ft_process_arg(t_format *fmt)
 	else if (!ft_strncmp(fmt->id->type, "x", 1))
 		return (ft_process_x(fmt));
 	else if (!ft_strncmp(fmt->id->type, "X", 1))
-		return (ft_process_X(fmt));
-		*/
+		return (ft_process_xu(fmt));
 	else if (!ft_strncmp(fmt->id->type, "%", 1))
 		return (ft_process_pc(fmt));
-	return (0);
+	return (42);
 }

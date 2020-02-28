@@ -6,7 +6,7 @@
 /*   By: galves-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 12:05:54 by galves-d          #+#    #+#             */
-/*   Updated: 2020/02/14 14:50:23 by galves-d         ###   ########.fr       */
+/*   Updated: 2020/02/27 12:54:49 by galves-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static char	*lst_to_str(t_list *lst)
 	str = (char*)ft_calloc(length + 1, sizeof(char));
 	while (str != NULL && i < length)
 	{
-		str[i] == lst->content[0];
+		str[i] = *(char*)(lst->content);
 		lst = lst->next;
 		i++;
 	}
