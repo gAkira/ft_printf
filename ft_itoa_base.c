@@ -6,7 +6,7 @@
 /*   By: galves-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 12:05:54 by galves-d          #+#    #+#             */
-/*   Updated: 2020/02/29 22:56:19 by galves-d         ###   ########.fr       */
+/*   Updated: 2020/03/01 14:15:38 by galves-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,22 @@ static char	*lst_to_str(t_list *lst)
 {
 	int		i;
 	int		length;
-	t_list	*init;
+	t_list	*it;
 	char	*str;
 
-	init = lst;
-	if (lst == NULL)
+	it = lst;
+	if (it == NULL)
 		return (NULL);
 	i = 0;
-	length = ft_lstsize(lst);
+	length = ft_lstsize(it);
 	str = (char*)ft_calloc(length + 1, sizeof(char));
 	while (str != NULL && i < length)
 	{
-		str[i] = *(char*)(lst->content);
-		lst = lst->next;
+		str[i] = ((char*)(it->content))[0];
+		it = it->next;
 		i++;
 	}
-	ft_lstclear(&init, &free);
+	ft_lstclear(&lst, &free);
 	return (str);
 }
 
@@ -60,6 +60,6 @@ char		*ft_itoa_base(int nbr, const char *base)
 		u_nbr /= ft_strlen(base);
 	}
 	if (sign < 0)
-		ft_lstadd_front(&num, ft_lstnew("-"));
+		ft_lstadd_front(&num, ft_lstnew(ft_strdup("-")));
 	return (lst_to_str(num));
 }

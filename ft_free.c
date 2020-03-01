@@ -6,17 +6,18 @@
 /*   By: galves-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 15:59:32 by galves-d          #+#    #+#             */
-/*   Updated: 2020/02/29 22:21:12 by galves-d         ###   ########.fr       */
+/*   Updated: 2020/03/01 12:43:20 by galves-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_free(void **ptr)
+int		ft_free(void **ptr)
 {
 	if (ptr != NULL && *ptr != NULL)
 	{
 		free(*ptr);
 		*ptr = NULL;
 	}
+	return (0);
 }

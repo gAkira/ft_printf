@@ -6,7 +6,7 @@
 /*   By: galves-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/01 01:53:12 by galves-d          #+#    #+#             */
-/*   Updated: 2020/02/29 21:50:20 by galves-d         ###   ########.fr       */
+/*   Updated: 2020/03/01 12:45:10 by galves-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ typedef struct			s_format
 }						t_format;
 
 int						ft_printf(const char *fmt, ...);
-void					ft_free(void **ptr);
+int						ft_free(void **ptr);
 t_format				*ft_new_fmt(const char *fmt, va_list *arg);
 void					ft_del_fmt(t_format **fmt);
 int						ft_build_output(t_format *fmt, int *it);
@@ -65,7 +65,7 @@ int						ft_concat_char(char **str, char c, size_t str_len);
 int						ft_concat_str(char **s1, char **s2, size_t *s1_len,
 											size_t s2_len);
 t_id					*ft_new_id(const char *str);
-void					ft_del_id(t_id **id);
+int						ft_del_id(t_id **id);
 int						ft_is_present(char c, const char *set);
 int						ft_has_flag(t_id *id, t_flag flag);
 int						ft_get_flag(const char *str, t_id *id, int *pos);

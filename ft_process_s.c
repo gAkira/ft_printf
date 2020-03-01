@@ -6,7 +6,7 @@
 /*   By: galves-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 15:49:35 by galves-d          #+#    #+#             */
-/*   Updated: 2020/02/29 20:33:22 by galves-d         ###   ########.fr       */
+/*   Updated: 2020/03/01 14:23:24 by galves-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int			ft_process_s(t_format *fmt)
 	if (fmt->id->width)
 		o_len = fmt->id->f_width > a_len ? fmt->id->f_width : a_len;
 	if (!(new_o = (char*)ft_calloc(o_len + 1, sizeof(char))))
-		return (0);
+		return (ft_free((void**)&arg));
 	ft_memset(new_o, ' ', o_len);
 	if (ft_has_flag(fmt->id, FLG_MINUS))
 		ft_memcpy(new_o, arg, a_len);
@@ -45,7 +45,7 @@ int			ft_process_s(t_format *fmt)
 		ft_memcpy(&new_o[o_len - a_len], arg, a_len);
 	if (ft_has_flag(fmt->id, FLG_ZERO) && !ft_has_flag(fmt->id, FLG_MINUS))
 		ft_memset(new_o, '0', o_len - a_len);
-	if (!ft_concat_str(&(fmt->output), new_o, &(fmt->out_len), o_len))
-		return (0);
-	return (42);
+	if (!ft_concat_str(&(fmt->output), &new_o, &(fmt->out_len), o_len))
+		return (ft_free((void**)&arg));
+	return (!ft_free((void**)&arg));
 }

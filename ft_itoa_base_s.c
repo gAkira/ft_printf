@@ -6,7 +6,7 @@
 /*   By: galves-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 12:05:54 by galves-d          #+#    #+#             */
-/*   Updated: 2020/02/27 12:54:49 by galves-d         ###   ########.fr       */
+/*   Updated: 2020/03/01 14:16:58 by galves-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,6 @@ char		*ft_itoa_base_s(int nbr, const char *base, int is_signed)
 		u_nbr /= ft_strlen(base);
 	}
 	if (sign < 0 && is_signed)
-		ft_lstadd_front(&num, ft_lstnew("-"));
+		ft_lstadd_front(&num, ft_lstnew(ft_strdup("-")));
 	return (lst_to_str(num));
 }
