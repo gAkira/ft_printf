@@ -6,7 +6,7 @@
 /*   By: galves-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/01 01:53:12 by galves-d          #+#    #+#             */
-/*   Updated: 2020/02/28 20:01:27 by galves-d         ###   ########.fr       */
+/*   Updated: 2020/02/29 21:50:20 by galves-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,10 @@ typedef struct			s_id
 	size_t				length;
 	char				*width;
 	size_t				f_width;
+	size_t				neg_1star;
 	char				*precision;
 	size_t				f_precision;
+	size_t				neg_2star;
 	char				*type;
 }						t_id;
 
@@ -60,7 +62,7 @@ t_format				*ft_new_fmt(const char *fmt, va_list *arg);
 void					ft_del_fmt(t_format **fmt);
 int						ft_build_output(t_format *fmt, int *it);
 int						ft_concat_char(char **str, char c, size_t str_len);
-int						ft_concat_str(char **s1, char *s2, size_t *s1_len,
+int						ft_concat_str(char **s1, char **s2, size_t *s1_len,
 											size_t s2_len);
 t_id					*ft_new_id(const char *str);
 void					ft_del_id(t_id **id);
@@ -87,5 +89,7 @@ char					*ft_itoa_base_s(int nbr, const char *base,
 											int is_signed);
 char					*ft_itoa_base_u(unsigned long int nbr, const char *base,
 											int is_signed);
+
+//12~15		736~738		740~744
 
 #endif

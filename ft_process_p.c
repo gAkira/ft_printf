@@ -6,7 +6,7 @@
 /*   By: galves-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 15:49:35 by galves-d          #+#    #+#             */
-/*   Updated: 2020/02/28 20:03:56 by galves-d         ###   ########.fr       */
+/*   Updated: 2020/02/29 21:56:10 by galves-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static char		*build_precision(t_format *fmt, char *c_arg, int ind)
 	ft_free((void**)&c_arg);
 	aux = ft_strdup("0x");
 	len = 2;
-	if (!ft_concat_str(&aux, n_arg, &len, ft_strlen(n_arg)))
+	if (!ft_concat_str(&aux, &n_arg, &len, ft_strlen(n_arg)))
 		return (NULL);
 	n_arg = aux;
 	return (n_arg);
@@ -48,11 +48,12 @@ static char		*get_arg(t_format *fmt)
 		return (ft_strdup("0x0"));
 	c_arg = ft_itoa_base_u((unsigned long int)arg, BS_HEX_LOW, 0);
 	ind = 0;
-	if (fmt->id->precision && (fmt->id->f_precision > (ft_strlen(c_arg) - ind)))
+	if (fmt->id->precision && (fmt->id->f_precision > (ft_strlen(c_arg) - ind))
+			&& !fmt->id->neg_2star)
 		return (build_precision(fmt, c_arg, ind));
 	aux = ft_strdup("0x");
 	ind = 2;
-	if (!ft_concat_str(&aux, c_arg, &ind, ft_strlen(c_arg)))
+	if (!ft_concat_str(&aux, &c_arg, &ind, ft_strlen(c_arg)))
 		return (NULL);
 	c_arg = aux;
 	return (c_arg);
@@ -93,10 +94,11 @@ int				ft_process_p(t_format *fmt)
 		ft_memcpy(new_o, arg, ft_strlen(arg));
 	else
 		ft_memcpy(&new_o[o_l - a_l], arg, a_l);
-	if (ft_has_flag(fmt->id, FLG_ZERO) && !fmt->id->precision)
+	if (ft_has_flag(fmt->id, FLG_ZERO) && !fmt->id->precision
+			&& !fmt->id->neg_2star)
 		fill_zeroes(new_o);
 	ft_free((void**)&arg);
-	if (!ft_concat_str(&(fmt->output), new_o, &(fmt->out_len), o_l))
+	if (!ft_concat_str(&(fmt->output), &new_o, &(fmt->out_len), o_l))
 		return (0);
 	return (42);
 }

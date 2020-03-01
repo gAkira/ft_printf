@@ -6,7 +6,7 @@
 /*   By: galves-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 12:50:42 by galves-d          #+#    #+#             */
-/*   Updated: 2020/02/19 19:08:02 by galves-d         ###   ########.fr       */
+/*   Updated: 2020/02/29 17:00:08 by galves-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		ft_is_present(char c, const char *set)
 	int		i;
 
 	i = 0;
-	while (c == '\0' || set[i] != '\0')
+	while (set[i] != '\0')
 	{
 		if (set[i] == c)
 			return (42);

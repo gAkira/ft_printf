@@ -6,7 +6,7 @@
 /*   By: galves-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 15:49:35 by galves-d          #+#    #+#             */
-/*   Updated: 2020/02/27 11:22:06 by galves-d         ###   ########.fr       */
+/*   Updated: 2020/02/29 21:55:21 by galves-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,11 @@ int		ft_process_pc(t_format *fmt)
 			ft_memset(new_o, '0', len);
 		new_o[len - 1] = '%';
 	}
-	if (!ft_concat_str(&(fmt->output), new_o, &(fmt->out_len), len))
+	if (!ft_concat_str(&(fmt->output), &new_o, &(fmt->out_len), len))
 	{
 		ft_free((void**)&new_o);
 		return (0);
 	}
+	ft_free((void**)&new_o);
 	return (42);
 }

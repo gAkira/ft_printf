@@ -6,7 +6,7 @@
 /*   By: galves-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 15:49:35 by galves-d          #+#    #+#             */
-/*   Updated: 2020/02/28 18:24:17 by galves-d         ###   ########.fr       */
+/*   Updated: 2020/02/29 21:54:49 by galves-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,19 +38,28 @@ static char		*get_arg(t_format *fmt)
 		return (ft_strdup(""));
 	c_arg = ft_itoa_base_u(arg, BS_DEC, 0);
 	ind = (ft_has_flag(fmt->id, FLG_PLUS) || arg < 0 ? 1 : 0);
-	if (fmt->id->precision && (fmt->id->f_precision > (ft_strlen(c_arg) - ind)))
+	if (fmt->id->precision && (fmt->id->f_precision > (ft_strlen(c_arg) - ind))
+			&& !fmt->id->neg_2star)
 		return (build_precision(fmt, c_arg, ind));
 	return (c_arg);
 }
 
-static size_t	get_output_length(t_format *fmt, size_t a_len)
+static int		def_if_fill(t_format *fmt)
 {
-	size_t	o_len;
-
-	o_len = a_len;
 	if (fmt->id->width)
-		o_len = fmt->id->f_width > o_len ? fmt->id->f_width : a_len;
-	return (o_len);
+	{
+		if (fmt->id->precision)
+			return (!fmt->id->neg_1star && fmt->id->neg_2star);
+		else
+			return (!ft_has_flag(fmt->id, FLG_MINUS));
+	}
+	else
+	{
+		if (fmt->id->precision)
+			return (fmt->id->neg_2star);
+		else
+			return (0);
+	}
 }
 
 static void		fill_zeroes(char *str)
@@ -80,7 +89,9 @@ int				ft_process_u(t_format *fmt)
 
 	arg = get_arg(fmt);
 	a_len = ft_strlen(arg);
-	o_len = get_output_length(fmt, a_len);
+	o_len = a_len;
+	if (fmt->id->width)
+		o_len = fmt->id->f_width > o_len ? fmt->id->f_width : a_len;
 	if (!(new_o = (char*)ft_calloc(o_len + 1, sizeof(char))))
 		return (0);
 	ft_memset(new_o, ' ', o_len);
@@ -88,10 +99,10 @@ int				ft_process_u(t_format *fmt)
 		ft_memcpy(new_o, arg, ft_strlen(arg));
 	else
 		ft_memcpy(&new_o[o_len - a_len], arg, a_len);
-	if (ft_has_flag(fmt->id, FLG_ZERO) && !fmt->id->precision)
+	if (ft_has_flag(fmt->id, FLG_ZERO) && def_if_fill(fmt))			
 		fill_zeroes(new_o);
 	ft_free((void**)&arg);
-	if (!ft_concat_str(&(fmt->output), new_o, &(fmt->out_len), o_len))
+	if (!ft_concat_str(&(fmt->output), &new_o, &(fmt->out_len), o_len))
 		return (0);
 	return (42);
 }

@@ -6,7 +6,7 @@
 /*   By: galves-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 15:49:35 by galves-d          #+#    #+#             */
-/*   Updated: 2020/02/27 11:58:04 by galves-d         ###   ########.fr       */
+/*   Updated: 2020/02/29 20:33:22 by galves-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int			ft_process_s(t_format *fmt)
 	arg = get_arg(fmt);
 	a_len = ft_strlen(arg);
 	o_len = a_len;
-	if (fmt->id->precision)
+	if (fmt->id->precision && !fmt->id->neg_2star)
 		a_len = fmt->id->f_precision < o_len ? fmt->id->f_precision : o_len;
 	if (fmt->id->width)
 		o_len = fmt->id->f_width > a_len ? fmt->id->f_width : a_len;

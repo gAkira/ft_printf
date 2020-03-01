@@ -6,7 +6,7 @@
 /*   By: galves-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/01 01:56:46 by galves-d          #+#    #+#             */
-/*   Updated: 2020/02/19 18:15:46 by galves-d         ###   ########.fr       */
+/*   Updated: 2020/02/29 21:11:22 by galves-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int		ft_printf(const char *format, ...)
 		ft_del_fmt(&fmt);
 		return (length);
 	}
+	va_end(args);
 	ft_del_fmt(&fmt);
 	return (-42);
 }

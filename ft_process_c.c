@@ -6,7 +6,7 @@
 /*   By: galves-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 15:49:35 by galves-d          #+#    #+#             */
-/*   Updated: 2020/02/19 18:39:06 by galves-d         ###   ########.fr       */
+/*   Updated: 2020/02/29 21:53:58 by galves-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,11 @@ int		ft_process_c(t_format *fmt)
 		new_o[0] = (char)va_arg(*(fmt->args), int);
 	else
 		new_o[len - 1] = (char)va_arg(*(fmt->args), int);
-	if (!ft_concat_str(&(fmt->output), new_o, &(fmt->out_len), len))
+	if (!ft_concat_str(&(fmt->output), &new_o, &(fmt->out_len), len))
 	{
 		ft_free((void**)&new_o);
 		return (0);
 	}
+	ft_free((void**)&new_o);
 	return (42);
 }

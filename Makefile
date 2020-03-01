@@ -6,7 +6,7 @@
 #    By: galves-d <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/04 02:08:26 by galves-d          #+#    #+#              #
-#    Updated: 2020/02/28 18:39:04 by galves-d         ###   ########.fr        #
+#    Updated: 2020/02/29 21:44:27 by galves-d         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,7 @@ SRCS		=	$(SRCS_DIR)/ft_printf.c				\
 				$(SRCS_DIR)/ft_itoa_base_s.c		\
 				$(SRCS_DIR)/ft_itoa_base_u.c
 
-OBJS_DIR	=	.
+OBJS_DIR	=	./obj
 OBJS		=	$(patsubst $(SRCS_DIR)/%.c, $(OBJS_DIR)/%.o, $(SRCS))
 
 all:	$(NAME)
@@ -79,10 +79,16 @@ fclean: clean
 
 re: fclean all
 
+v:	all
+	$(CC) $(C_FLAGS) -I. libftprintf.a -I. teste.c -o output
+	valgrind --leak-check=full ./output
+l:	all
+	$(CC) $(C_FLAGS) -I. libftprintf.a -I. teste.c -o output
+	lldb ./output
+
 t:	all
 	$(CC) $(C_FLAGS) -I. libftprintf.a -I. teste.c -o output
 	./output
-
 d:
 	@$(CC) $(C_FLAGS) main.c -o output
 	@./output
