@@ -6,7 +6,7 @@
 /*   By: galves-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/01 06:27:27 by galves-d          #+#    #+#             */
-/*   Updated: 2020/03/01 13:23:25 by galves-d         ###   ########.fr       */
+/*   Updated: 2020/03/02 21:53:30 by galves-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ t_id		*ft_new_id(const char *str)
 	ft_get_flag(&str[i], new_id, &i);
 	ft_get_width(&str[i], new_id, &i);
 	ft_get_precision(&str[i], new_id, &i);
-	ft_get_type(&str[i], new_id, &i);
+	if (!ft_get_type(&str[i], new_id, &i))
+		return (NULL);
 	new_id->length = i;
 	return (new_id);
 }

@@ -6,7 +6,7 @@
 /*   By: galves-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 12:05:54 by galves-d          #+#    #+#             */
-/*   Updated: 2020/03/01 14:16:58 by galves-d         ###   ########.fr       */
+/*   Updated: 2020/03/02 22:05:14 by galves-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@ static char	*lst_to_str(t_list *lst)
 	int		i;
 	int		length;
 	char	*str;
+	t_list	*init;
 
+	init = lst;
 	if (lst == NULL)
 		return (NULL);
 	i = 0;
@@ -29,7 +31,7 @@ static char	*lst_to_str(t_list *lst)
 		lst = lst->next;
 		i++;
 	}
-	ft_lstclear(&lst, &free);
+	ft_lstclear(&init, &free);
 	return (str);
 }
 
