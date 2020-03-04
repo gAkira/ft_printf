@@ -6,7 +6,7 @@
 /*   By: galves-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 15:49:35 by galves-d          #+#    #+#             */
-/*   Updated: 2020/02/29 21:55:02 by galves-d         ###   ########.fr       */
+/*   Updated: 2020/03/03 20:55:00 by galves-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static char		*get_arg(t_format *fmt)
 	char			*c_arg;
 
 	arg = va_arg(*(fmt->args), unsigned int);
-	if (fmt->id->precision && fmt->id->f_precision == 0 && arg == 0) 
+	if (fmt->id->precision && fmt->id->f_precision == 0 && arg == 0)
 		return (ft_strdup(""));
 	c_arg = ft_itoa_base_u(arg, BS_HEX_LOW, 0);
 	ind = (ft_has_flag(fmt->id, FLG_PLUS) || arg < 0 ? 1 : 0);

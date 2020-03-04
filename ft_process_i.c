@@ -6,7 +6,7 @@
 /*   By: galves-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 15:49:35 by galves-d          #+#    #+#             */
-/*   Updated: 2020/03/01 13:16:24 by galves-d         ###   ########.fr       */
+/*   Updated: 2020/03/03 20:52:37 by galves-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static char		*get_arg(t_format *fmt)
 	char	*c_arg;
 
 	arg = va_arg(*(fmt->args), int);
-	if (fmt->id->precision && fmt->id->f_precision == 0 && arg == 0) 
+	if (fmt->id->precision && fmt->id->f_precision == 0 && arg == 0)
 		return (ft_strdup(""));
 	if (ft_has_flag(fmt->id, FLG_PLUS))
 		c_arg = ft_itoa_base_s(arg, BS_DEC, 1);
@@ -46,7 +46,7 @@ static char		*get_arg(t_format *fmt)
 	ind = (ft_has_flag(fmt->id, FLG_PLUS) || arg < 0 ? 1 : 0);
 	if (fmt->id->precision && (fmt->id->f_precision > (ft_strlen(c_arg) - ind))
 			&& !fmt->id->neg_2star)
-	c_arg = build_precision(fmt, c_arg, ind);
+		c_arg = build_precision(fmt, c_arg, ind);
 	return (c_arg);
 }
 

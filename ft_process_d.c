@@ -6,7 +6,7 @@
 /*   By: galves-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 15:49:35 by galves-d          #+#    #+#             */
-/*   Updated: 2020/03/01 14:07:18 by galves-d         ###   ########.fr       */
+/*   Updated: 2020/03/03 20:51:05 by galves-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static char		*get_arg(t_format *fmt)
 	char	*c_arg;
 
 	arg = va_arg(*(fmt->args), int);
-	if (fmt->id->precision && fmt->id->f_precision == 0 && arg == 0) 
+	if (fmt->id->precision && fmt->id->f_precision == 0 && arg == 0)
 		return (ft_strdup(""));
 	if (ft_has_flag(fmt->id, FLG_PLUS))
 		c_arg = ft_itoa_base_s(arg, BS_DEC, 1);
@@ -46,7 +46,7 @@ static char		*get_arg(t_format *fmt)
 	ind = (ft_has_flag(fmt->id, FLG_PLUS) || arg < 0 ? 1 : 0);
 	if (fmt->id->precision && (fmt->id->f_precision > (ft_strlen(c_arg) - ind))
 			&& !fmt->id->neg_2star)
-	c_arg = build_precision(fmt, c_arg, ind);
+		c_arg = build_precision(fmt, c_arg, ind);
 	return (c_arg);
 }
 
@@ -99,10 +99,7 @@ int				ft_process_d(t_format *fmt)
 	if (fmt->id->width)
 		o_len = fmt->id->f_width > o_len ? fmt->id->f_width : a_len;
 	if (!(new_o = (char*)ft_calloc(o_len + 1, sizeof(char))))
-	{
-		ft_free((void**)&arg);
-		return (0);
-	}
+		return (ft_free((void**)&arg));
 	ft_memset(new_o, ' ', o_len);
 	if (ft_has_flag(fmt->id, FLG_MINUS))
 		ft_memcpy(new_o, arg, ft_strlen(arg));

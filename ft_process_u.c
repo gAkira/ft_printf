@@ -6,7 +6,7 @@
 /*   By: galves-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 15:49:35 by galves-d          #+#    #+#             */
-/*   Updated: 2020/02/29 21:54:49 by galves-d         ###   ########.fr       */
+/*   Updated: 2020/03/03 20:54:22 by galves-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static char		*get_arg(t_format *fmt)
 	char			*c_arg;
 
 	arg = va_arg(*(fmt->args), unsigned int);
-	if (fmt->id->precision && fmt->id->f_precision == 0 && arg == 0) 
+	if (fmt->id->precision && fmt->id->f_precision == 0 && arg == 0)
 		return (ft_strdup(""));
 	c_arg = ft_itoa_base_u(arg, BS_DEC, 0);
 	ind = (ft_has_flag(fmt->id, FLG_PLUS) || arg < 0 ? 1 : 0);
@@ -99,7 +99,7 @@ int				ft_process_u(t_format *fmt)
 		ft_memcpy(new_o, arg, ft_strlen(arg));
 	else
 		ft_memcpy(&new_o[o_len - a_len], arg, a_len);
-	if (ft_has_flag(fmt->id, FLG_ZERO) && def_if_fill(fmt))			
+	if (ft_has_flag(fmt->id, FLG_ZERO) && def_if_fill(fmt))
 		fill_zeroes(new_o);
 	ft_free((void**)&arg);
 	if (!ft_concat_str(&(fmt->output), &new_o, &(fmt->out_len), o_len))
