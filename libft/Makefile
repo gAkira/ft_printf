@@ -6,7 +6,7 @@
 #    By: galves-d <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/21 21:31:56 by galves-d          #+#    #+#              #
-#    Updated: 2020/02/04 02:54:42 by galves-d         ###   ########.fr        #
+#    Updated: 2020/03/05 20:05:22 by galves-d         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,45 +14,43 @@ CC		=		gcc
 
 NAME	=		libft.a
 
-SRCS	=		ft_memset.c		\
-				ft_bzero.c		\
-				ft_memcpy.c 	\
-				ft_memccpy.c 	\
-				ft_memmove.c 	\
-				ft_memchr.c 	\
-				ft_memcmp.c 	\
-				ft_strlen.c 	\
-				ft_strlcpy.c 	\
-				ft_strlcat.c 	\
-				ft_strchr.c 	\
-	 			ft_strrchr.c 	\
-				ft_strnstr.c 	\
-				ft_strncmp.c 	\
-				ft_atoi.c 		\
-				ft_isalpha.c 	\
-				ft_isdigit.c 	\
-				ft_isalnum.c 	\
-				ft_isascii.c 	\
-				ft_isprint.c 	\
-				ft_toupper.c 	\
-			 	ft_tolower.c 	\
-				ft_calloc.c 	\
-				ft_strdup.c 	\
-								\
-				ft_substr.c		\
-				ft_strjoin.c	\
-				ft_strtrim.c	\
-				ft_split.c		\
-				ft_itoa.c		\
-				ft_strmapi.c	\
-			 	ft_putchar_fd.c	\
-				ft_putstr_fd.c	\
-				ft_putendl_fd.c	\
-				ft_putnbr_fd.c
-
-OBJS		=	$(SRCS:.c=.o)
-
-SRCS_BONUS	=	ft_lstnew.c			\
+SRCS	=		ft_memset.c			\
+				ft_bzero.c			\
+				ft_memcpy.c 		\
+				ft_memccpy.c 		\
+				ft_memmove.c 		\
+				ft_memchr.c 		\
+				ft_memcmp.c 		\
+				ft_strlen.c 		\
+				ft_strlcpy.c 		\
+				ft_strlcat.c 		\
+				ft_strchr.c 		\
+	 			ft_strrchr.c 		\
+				ft_strnstr.c 		\
+				ft_strncmp.c 		\
+				ft_atoi.c 			\
+				ft_isalpha.c 		\
+				ft_isdigit.c 		\
+				ft_isalnum.c 		\
+				ft_isascii.c 		\
+				ft_isprint.c 		\
+				ft_toupper.c 		\
+			 	ft_tolower.c 		\
+				ft_calloc.c 		\
+				ft_strdup.c 		\
+									\
+				ft_substr.c			\
+				ft_strjoin.c		\
+				ft_strtrim.c		\
+				ft_split.c			\
+				ft_itoa.c			\
+				ft_strmapi.c		\
+			 	ft_putchar_fd.c		\
+				ft_putstr_fd.c		\
+				ft_putendl_fd.c		\
+				ft_putnbr_fd.c		\
+									\
+				ft_lstnew.c			\
 				ft_lstadd_front.c	\
 				ft_lstsize.c		\
 				ft_lstlast.c		\
@@ -60,9 +58,13 @@ SRCS_BONUS	=	ft_lstnew.c			\
 			 	ft_lstdelone.c		\
 				ft_lstclear.c		\
 				ft_lstiter.c		\
-				ft_lstmap.c
+				ft_lstmap.c			\
+									\
+				ft_itoa_base.c		\
+				ft_itoa_base_s.c	\
+				ft_itoa_base_u.c
 
-OBJS_BONUS	=	$(SRCS_BONUS:.c=.o)
+OBJS		=	$(patsubst %.c, %.o, $(SRCS))
 
 INC			=	.
 
@@ -70,20 +72,19 @@ C_FLAGS		=	-Wall -Wextra -Werror
 
 all: $(NAME)
 
-$(NAME): $(SRCS) libft.h
-	@$(CC) $(C_FLAGS) -I$(INC) -c $(SRCS)
-	@ar rc $(NAME) $(OBJS)
-	@ranlib $(NAME)
+$(NAME): $(OBJS)
+	@ar rcs $@ $^
+	@ranlib $@
 
-bonus: $(SRCS_BONUS) libft.h
-	@$(CC) $(C_FLAGS) -I$(INC) -c $(SRCS_BONUS)
-	@ar rc $(NAME) $(OBJS_BONUS)
-	@ranlib $(NAME)
+%.o: %.c
+	@$(CC) $(C_FLAGS) -c -I$(INC) $< -o $@
 
 clean:
-	@rm -f $(OBJS) $(OBJS_BONUS)
+	@rm -f $(OBJS)
 
 fclean: clean
 	@rm -f $(NAME)
 
 re: fclean all
+
+bonus: re

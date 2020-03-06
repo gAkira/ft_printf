@@ -6,7 +6,7 @@
 /*   By: galves-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 15:52:00 by galves-d          #+#    #+#             */
-/*   Updated: 2020/01/26 00:33:35 by galves-d         ###   ########.fr       */
+/*   Updated: 2020/03/04 21:46:20 by galves-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,15 @@ void			ft_lstdelone(t_list *lst, void (*del)(void*));
 void			ft_lstclear(t_list **lst, void (*del)(void*));
 void			ft_lstiter(t_list *lst, void (*f)(void*));
 t_list			*ft_lstmap(t_list *lst, void *(*f)(void*), void (*del)(void*));
+
+/*
+** Libft : Additional Part
+*/
+char			*ft_itoa_base(int nbr, const char *base);
+char			*ft_itoa_base_s(int nbr, const char *base,
+									int is_signed);
+char			*ft_itoa_base_u(unsigned long int nbr, const char *base,
+									int is_signed);
 
 /*
 **		░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░

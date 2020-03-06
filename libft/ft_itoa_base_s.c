@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa_base_u.c                                   :+:      :+:    :+:   */
+/*   ft_itoa_base_s.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: galves-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 12:05:54 by galves-d          #+#    #+#             */
-/*   Updated: 2020/03/02 22:04:28 by galves-d         ###   ########.fr       */
+/*   Updated: 2020/03/04 21:38:00 by galves-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
 static char	*lst_to_str(t_list *lst)
 {
@@ -35,13 +35,12 @@ static char	*lst_to_str(t_list *lst)
 	return (str);
 }
 
-char		*ft_itoa_base_u(unsigned long int nbr, const char *base,
-		int is_signed)
+char		*ft_itoa_base_s(int nbr, const char *base, int is_signed)
 {
-	int					sign;
-	unsigned long int	u_nbr;
-	t_list				*num;
-	t_list				*aux;
+	int				sign;
+	unsigned int	u_nbr;
+	t_list			*num;
+	t_list			*aux;
 
 	num = NULL;
 	if (ft_strlen(base) < 2)
