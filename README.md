@@ -4,7 +4,7 @@
 ft\_printf
 
 #### Description:
-It's my own recreation of the famous C function 'printf'
+It's my own version of the famous C function 'printf'
 
 #### Prototype:
 ```c
